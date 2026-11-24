@@ -268,7 +268,7 @@
     /* 시작 화면: 사진 | 글 두 단 */
     .start-inner{
       display:grid;
-      grid-template-columns:minmax(0, auto) minmax(240px, 420px);
+      grid-template-columns:minmax(0, auto) minmax(240px, 400px);
       grid-template-rows:auto auto;
       grid-template-areas:"photo brand" "photo text";
       justify-content:center; align-content:center; justify-items:start;
@@ -278,7 +278,7 @@
     .brand{grid-area:brand; align-self:end; font-size:13px; padding:7px 13px;}
     .hero-card{
       grid-area:photo; align-self:center; justify-self:center;
-      width:auto; height:min(70vh, 40vw); aspect-ratio:3 / 2;
+      width:auto; height:min(70vh, 34vw); aspect-ratio:3 / 2;
       margin-top:0; border-width:5px; border-radius:22px;
     }
     .start-text{grid-area:text; align-self:start; align-items:flex-start; width:100%; gap:clamp(6px,1.2vh,12px);}
@@ -312,6 +312,12 @@
     .panel .ddesc{font-size:13px;}
     .mic-btn{height:70px;}
     .start-btn{height:70px;}
+  }
+
+  /* 아주 낮은 가로 화면(휴대폰 가로) */
+  @media (min-aspect-ratio: 1/1) and (max-height: 480px){
+    .start-inner{grid-template-columns:minmax(0, auto) minmax(200px, 44vw);}
+    .hero-card{height:min(66vh, 26vw);}
   }
 </style>
 </head>
