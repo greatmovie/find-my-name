@@ -1,5 +1,5 @@
 /* 내이름을찾아줘 - 오프라인 캐시 */
-var CACHE = "find-my-name-v2";
+var CACHE = "find-my-name-v3";
 var SHELL = [
   "./",
   "./index.html",
@@ -16,7 +16,25 @@ var SHELL = [
   "./images/suchomimus.webp",
   "./images/triceratops.webp",
   "./images/brachiosaurus.webp",
-  "./images/stegosaurus.webp"
+  "./images/stegosaurus.webp",
+  "./images/mapusaurus.webp",
+  "./images/therizinosaurus.webp",
+  "./images/lythronax.webp",
+  "./images/pteranodon.webp",
+  "./images/quetzalcoatlus.webp",
+  "./images/mosasaurus.webp",
+  "./images/kronosaurus.webp",
+  "./images/ankylosaurus.webp",
+  "./images/carnotaurus.webp",
+  "./images/pachycephalosaurus.webp",
+  "./images/parasaurolophus.webp",
+  "./images/styracosaurus.webp",
+  "./images/diplodocus.webp",
+  "./images/iguanodon.webp",
+  "./images/baryonyx.webp",
+  "./images/ceratosaurus.webp",
+  "./images/deinonychus.webp",
+  "./images/plesiosaurus.webp"
 ];
 
 // 캐시가 비었을 때 돌려줄 최소 응답

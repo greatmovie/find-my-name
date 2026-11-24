@@ -216,6 +216,8 @@
   }
   .diet.carn{background:linear-gradient(180deg,#FF7E6B,#D8392B); box-shadow:0 3px 8px rgba(180,40,25,.3);}
   .diet.herb{background:linear-gradient(180deg,#6BD48B,#2E9E5B); box-shadow:0 3px 8px rgba(30,110,60,.3);}
+  .diet.fly{background:linear-gradient(180deg,#7FC4FF,#2C82C9); box-shadow:0 3px 8px rgba(20,90,150,.3);}
+  .diet.sea{background:linear-gradient(180deg,#4FC9C7,#12787E); box-shadow:0 3px 8px rgba(10,90,95,.3);}
   .dname{
     margin:0; font-weight:900; letter-spacing:-.02em; line-height:1.05;
     font-size:clamp(26px,7.6vw,36px); color:#3A2410;
@@ -335,7 +337,7 @@
         <button class="start-btn" id="btn-start" type="button">
           <span class="ic">▶</span><span>놀자!</span>
         </button>
-        <p class="hint">소리를 켜고 놀아 주세요 🔊</p>
+        <p class="hint">한 번에 열 마리씩, 놀 때마다 새 공룡이 나와요 🔊</p>
       </div>
     </div>
   </section>
@@ -440,11 +442,93 @@
     {
       name: "스테고사우루스", diet: "초식", img: "images/stegosaurus.webp",
       desc: "등에 커다란 판이 줄줄이 붙어 있어요. 꼬리에는 뾰족한 가시가 있어요!"
+    },
+    {
+      name: "마푸사우루스", diet: "육식", img: "images/mapusaurus.webp",
+      desc: "티라노처럼 큰 머리에 날카로운 이빨이 있어요. 여러 마리가 모여 힘을 합쳐 사냥했어요!"
+    },
+    {
+      name: "테리지노사우루스", diet: "초식", img: "images/therizinosaurus.webp",
+      desc: "깃털이 보슬보슬하고 목이 아주 길어요. 앞발에는 낫처럼 긴 발톱이 세 개씩 있어요!"
+    },
+    {
+      name: "리토르낙스", diet: "육식", img: "images/lythronax.webp",
+      desc: "머리가 짧고 두꺼운 사냥꾼이에요. '피의 왕'이라는 멋진 이름을 가지고 있어요!"
+    },
+    {
+      name: "프테라노돈", diet: "익룡", img: "images/pteranodon.webp",
+      desc: "머리 뒤로 길쭉한 볏이 있어요. 넓은 하늘을 날아다니며 물고기를 잡아먹었어요!"
+    },
+    {
+      name: "케찰코아툴루스", diet: "익룡", img: "images/quetzalcoatlus.webp",
+      desc: "기린만큼 키가 큰 익룡이에요. 날개를 펼치면 비행기처럼 아주 넓어요!"
+    },
+    {
+      name: "모사사우루스", diet: "바다", img: "images/mosasaurus.webp",
+      desc: "바다에 살던 커다란 도마뱀 친구예요. 노처럼 생긴 지느러미로 쌩쌩 헤엄쳤어요!"
+    },
+    {
+      name: "크로노사우루스", diet: "바다", img: "images/kronosaurus.webp",
+      desc: "악어처럼 긴 머리에 이빨이 가득해요. 바다에서 물고기를 잡아먹는 사냥꾼이에요!"
+    },
+    {
+      name: "안킬로사우루스", diet: "초식", img: "images/ankylosaurus.webp",
+      desc: "온몸이 단단한 갑옷으로 덮여 있어요. 꼬리 끝에는 커다란 방망이가 달려 있어요!"
+    },
+    {
+      name: "카르노타우루스", diet: "육식", img: "images/carnotaurus.webp",
+      desc: "눈 위에 뿔이 두 개 솟아 있어요. '고기를 먹는 황소'라는 뜻이래요!"
+    },
+    {
+      name: "파키케팔로사우루스", diet: "초식", img: "images/pachycephalosaurus.webp",
+      desc: "머리 위가 공처럼 둥글게 튀어나왔어요. 머리를 쿵쿵 부딪치며 겨뤘대요!"
+    },
+    {
+      name: "파라사우롤로푸스", diet: "초식", img: "images/parasaurolophus.webp",
+      desc: "머리 뒤로 긴 관이 길쭉하게 뻗어 있어요. 그 관으로 '뿌우~' 소리를 냈어요!"
+    },
+    {
+      name: "스티라코사우루스", diet: "초식", img: "images/styracosaurus.webp",
+      desc: "코에 뾰족한 뿔이 하나, 목에는 가시가 빙 둘러 있어요. 풀을 냠냠 먹었어요!"
+    },
+    {
+      name: "디플로도쿠스", diet: "초식", img: "images/diplodocus.webp",
+      desc: "목이 아주아주 길고 꼬리는 채찍처럼 가늘어요. 높은 나무 잎을 먹었어요!"
+    },
+    {
+      name: "이구아노돈", diet: "초식", img: "images/iguanodon.webp",
+      desc: "이빨이 이구아나처럼 생겼어요. 엄지손가락에는 뾰족한 가시가 있어요!"
+    },
+    {
+      name: "바리오닉스", diet: "육식", img: "images/baryonyx.webp",
+      desc: "악어처럼 긴 주둥이로 물고기를 잡아요. 엄지에는 커다란 갈고리 발톱이 있어요!"
+    },
+    {
+      name: "케라토사우루스", diet: "육식", img: "images/ceratosaurus.webp",
+      desc: "코 위에 뿔이 하나 있고, 등에는 작은 판이 줄줄이 붙어 있어요!"
+    },
+    {
+      name: "데이노니쿠스", diet: "육식", img: "images/deinonychus.webp",
+      desc: "발에 낫처럼 생긴 발톱이 있어요. 여럿이 힘을 모아 사냥했어요!"
+    },
+    {
+      name: "플레시오사우루스", diet: "바다", img: "images/plesiosaurus.webp",
+      desc: "목이 길고 머리는 작아요. 네 개의 지느러미로 바다를 미끄러지듯 헤엄쳤어요!"
     }
   ];
 
+  // 한 판에 내는 공룡 수 (전체 28종 중 매번 10마리를 뽑아 낸다)
+  var ROUND = 10;
+  var TOTAL = Math.min(ROUND, DINOS.length);
   var LISTEN_MS = 2800;
-  var TOTAL = DINOS.length;
+
+  // 먹이 종류별 배지 모양
+  var DIET_UI = {
+    "육식": { cls: "carn", label: "🥩 육식" },
+    "초식": { cls: "herb", label: "🌿 초식" },
+    "익룡": { cls: "fly", label: "🪶 익룡" },
+    "바다": { cls: "sea", label: "🌊 바다" }
+  };
 
   /* ---------- 요소 ---------- */
   var screens = {
@@ -837,9 +921,9 @@
 
     elImg.alt = dino.name;
 
-    var isHerb = dino.diet === "초식";
-    elDiet.className = "diet " + (isHerb ? "herb" : "carn");
-    elDiet.textContent = isHerb ? "🌿 초식" : "🥩 육식";
+    var dietUi = DIET_UI[dino.diet] || DIET_UI["육식"];
+    elDiet.className = "diet " + dietUi.cls;
+    elDiet.textContent = dietUi.label;
     elName.textContent = dino.name;
     elDesc.textContent = dino.desc;
 
@@ -867,7 +951,7 @@
   function goNext() {
     stopSpeech();
     if (state.pos >= state.deck.length - 1) {
-      state.pos = TOTAL;
+      state.pos = state.deck.length;
       paintProgress();
       showDone();
       return;
@@ -879,7 +963,7 @@
   function showDone() {
     stopSpeech();
     elDoneStars.innerHTML = "";
-    for (var i = 0; i < TOTAL; i++) {
+    for (var i = 0; i < state.deck.length; i++) {
       var s = document.createElement("span");
       s.textContent = "★";
       s.style.animationDelay = (i * 70) + "ms";
@@ -889,10 +973,28 @@
     fireConfetti(220);
     playFanfare();
     speak("와! 공룡 열 마리를 다 맞혔어요. 정말 잘했어요!");
+    // (TOTAL = 10 이라 '열 마리'로 읽어 준다)
+  }
+
+  // 28종 중 10마리를 새로 뽑는다 (바로 전 판과 똑같은 조합은 피한다)
+  function drawDeck() {
+    var prev = state.deck;
+    for (var tryN = 0; tryN < 12; tryN++) {
+      var pick = shuffle(DINOS).slice(0, TOTAL);
+      if (prev.length !== pick.length || !sameSet(prev, pick)) return pick;
+    }
+    return shuffle(DINOS).slice(0, TOTAL);
+  }
+
+  function sameSet(a, b) {
+    var key = function (list) {
+      return list.map(function (d) { return d.img; }).sort().join("|");
+    };
+    return key(a) === key(b);
   }
 
   function startGame() {
-    state.deck = shuffle(DINOS);
+    state.deck = drawDeck();
     state.pos = 0;
     state.revealed = false;
     state.busy = false;
