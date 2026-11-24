@@ -450,6 +450,7 @@
   var elSound = document.getElementById("btn-sound");
   var elProgress = document.getElementById("progress");
   var elImg = document.getElementById("dino-img");
+  var elPhotoCard = document.getElementById("photo-card");
   var elBg = document.getElementById("dino-bg");
   var elSpinner = document.getElementById("spinner");
   var elListening = document.getElementById("listening");
@@ -768,6 +769,7 @@
 
   function loadPhoto(src) {
     elImg.onload = function () {
+      fitCard();
       elImg.classList.add("ready");
       elSpinner.style.display = "none";
     };
@@ -778,9 +780,18 @@
     elBg.src = src;
     elImg.src = src;
     if (elImg.complete && elImg.naturalWidth > 0) {
+      fitCard();
       elImg.classList.add("ready");
       elSpinner.style.display = "none";
     }
+  }
+
+  // 사진 비율에 맞춰 카드 비율을 맞춘다 (잘림·검은 여백 없이 꽉 차게)
+  function fitCard() {
+    if (!elImg.naturalWidth || !elImg.naturalHeight) return;
+    try {
+      elPhotoCard.style.aspectRatio = elImg.naturalWidth + " / " + elImg.naturalHeight;
+    } catch (e) { /* 구형 브라우저 */ }
   }
 
   /* ---------- 정답 말하기 ---------- */
