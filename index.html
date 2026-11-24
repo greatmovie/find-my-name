@@ -55,6 +55,10 @@
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     height:100%; padding:calc(var(--safe-t) + 14px) 20px calc(var(--safe-b) + 22px); gap:9px;
   }
+  .start-text{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:9px; width:100%;
+  }
   .brand{
     background:#fff; color:#8A5A22;
     font-weight:900; font-size:14px; letter-spacing:.02em;
@@ -119,6 +123,7 @@
     justify-content:center; gap:16px; padding-top:6px;}
   .photo-card{
     position:relative; flex:0 0 auto; width:100%; aspect-ratio:3 / 2;
+    max-height:52vh;
     border-radius:28px; overflow:hidden;
     background:#E9D6B8;
     box-shadow:var(--card-shadow); border:5px solid #fff;
@@ -134,18 +139,10 @@
   /* 앞: 공룡 전신이 잘리지 않도록 그대로 보여준다 */
   .photo-card #dino-img{
     position:relative; z-index:2; width:100%; height:100%;
-    object-fit:cover; display:block;
+    object-fit:contain; display:block;
     opacity:0; transition:opacity .35s ease;
   }
   .photo-card #dino-img.ready{opacity:1;}
-  .qmark{
-    position:absolute; top:12px; left:12px; z-index:3;
-    width:52px; height:52px; border-radius:50%;
-    background:linear-gradient(180deg,#FFE07A,#FFB03A);
-    color:#8A4A00; font-weight:900; font-size:32px; line-height:1;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 5px 12px rgba(120,62,0,.3), inset 0 -3px 0 rgba(180,90,0,.2);
-  }
   .spinner{
     position:absolute; inset:0; margin:auto; width:54px; height:54px; border-radius:50%;
     border:6px solid rgba(255,255,255,.65); border-top-color:var(--orange);
@@ -266,6 +263,51 @@
 
   #confetti{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:50;}
 
+  /* ---------- 가로 화면 (PC·태블릿) ---------- */
+  @media (min-aspect-ratio: 1/1){
+    /* 시작 화면: 사진 | 글 두 단 */
+    .start-inner{
+      display:grid;
+      grid-template-columns:minmax(0, auto) minmax(240px, 420px);
+      grid-template-rows:auto auto;
+      grid-template-areas:"photo brand" "photo text";
+      justify-content:center; align-content:center; justify-items:start;
+      gap:clamp(6px, 1.4vh, 16px) clamp(18px, 3vw, 48px);
+      padding:calc(var(--safe-t) + 14px) clamp(20px, 4vw, 60px) calc(var(--safe-b) + 16px);
+    }
+    .brand{grid-area:brand; align-self:end; font-size:13px; padding:7px 13px;}
+    .hero-card{
+      grid-area:photo; align-self:center; justify-self:center;
+      width:auto; height:min(70vh, 40vw); aspect-ratio:3 / 2;
+      margin-top:0; border-width:5px; border-radius:22px;
+    }
+    .start-text{grid-area:text; align-self:start; align-items:flex-start; width:100%; gap:clamp(6px,1.2vh,12px);}
+    .title{font-size:clamp(28px, 3.4vw, 54px); text-align:left; margin-top:2px;}
+    .subtitle{font-size:clamp(13px, 1.4vw, 19px); text-align:left; margin:0;}
+    .start-btn{width:100%; height:clamp(62px, 9vh, 88px); font-size:clamp(22px, 2.2vw, 31px);}
+    .hint{font-size:12px; text-align:left;}
+
+    /* 퀴즈 화면: 사진 | 문제·정답 두 단 */
+    #screen-quiz .stage{
+      flex-direction:row; align-items:center; justify-content:center;
+      gap:clamp(14px, 2.2vw, 36px); padding-top:0;
+    }
+    #screen-quiz .photo-card{
+      width:auto; height:min(76vh, 40vw); max-height:76vh; aspect-ratio:3 / 2;
+      border-width:4px; border-radius:24px;
+    }
+    #screen-quiz .panel{padding-top:0; flex:1 1 auto; min-width:0; max-width:520px;}
+    .hint-q{text-align:left; font-size:clamp(15px, 1.5vw, 20px);}
+    .mic-btn{height:clamp(70px, 12vh, 92px); font-size:clamp(21px, 1.9vw, 28px);}
+    .dname{font-size:clamp(24px, 2.6vw, 38px);}
+    .ddesc{font-size:clamp(14px, 1.3vw, 17px);}
+
+    /* 완료 화면 */
+    .trophy{font-size:clamp(56px, 12vh, 92px);}
+    .done-title{font-size:clamp(28px, 3.4vw, 44px);}
+    .again-btn{height:clamp(64px, 10vh, 86px);}
+  }
+
   @media (max-height:640px){
     .panel .ddesc{font-size:13px;}
     .mic-btn{height:70px;}
@@ -280,13 +322,15 @@
   <section class="screen active" id="screen-start">
     <div class="start-inner">
       <div class="brand">🦕 공룡 놀이</div>
-      <div class="hero-card"><img src="images/tyrannosaurus.png" alt="" decoding="async"></div>
-      <h1 class="title"><span>내 이름을</span><span class="em">찾아줘!</span></h1>
-      <p class="subtitle">공룡을 보고 이름을 말해 봐요</p>
-      <button class="start-btn" id="btn-start" type="button">
-        <span class="ic">▶</span><span>놀자!</span>
-      </button>
-      <p class="hint">소리를 켜고 놀아 주세요 🔊</p>
+      <div class="hero-card"><img src="images/tyrannosaurus.webp" alt="" decoding="async" fetchpriority="high"></div>
+      <div class="start-text">
+        <h1 class="title"><span>내 이름을</span><span class="em">찾아줘!</span></h1>
+        <p class="subtitle">공룡을 보고 이름을 말해 봐요</p>
+        <button class="start-btn" id="btn-start" type="button">
+          <span class="ic">▶</span><span>놀자!</span>
+        </button>
+        <p class="hint">소리를 켜고 놀아 주세요 🔊</p>
+      </div>
     </div>
   </section>
 
@@ -301,7 +345,6 @@
       <div class="photo-card" id="photo-card">
         <img class="photo-bg" id="dino-bg" alt="" aria-hidden="true" decoding="async">
         <img id="dino-img" alt="공룡 사진" decoding="async">
-        <div class="qmark">?</div>
         <div class="spinner" id="spinner"></div>
         <div class="listening" id="listening">
           <div class="listen-ring"></div>
@@ -353,43 +396,43 @@
 
   var DINOS = [
     {
-      name: "티라노사우루스", diet: "육식", img: "images/tyrannosaurus.png",
+      name: "티라노사우루스", diet: "육식", img: "images/tyrannosaurus.webp",
       desc: "큰 머리에 날카로운 이빨이 있어요. 육식 공룡 중에 가장 유명한 사냥꾼이에요!"
     },
     {
-      name: "기가노토사우루스", diet: "육식", img: "images/giganotosaurus.png",
+      name: "기가노토사우루스", diet: "육식", img: "images/giganotosaurus.webp",
       desc: "티라노만큼 몸집이 어마어마하게 큰 사냥꾼이에요. 긴 턱으로 먹이를 꽉 물었어요!"
     },
     {
-      name: "알로사우루스", diet: "육식", img: "images/allosaurus.png",
+      name: "알로사우루스", diet: "육식", img: "images/allosaurus.webp",
       desc: "눈 위에 볼록한 뿔이 두 개 있어요. 긴 꼬리로 균형을 잡으며 사냥했어요!"
     },
     {
-      name: "딜로포사우루스", diet: "육식", img: "images/dilophosaurus.png",
+      name: "딜로포사우루스", diet: "육식", img: "images/dilophosaurus.webp",
       desc: "머리에 빨간 볏이 두 개 솟아 있어요. 목에는 보들보들한 깃털이 났어요!"
     },
     {
-      name: "벨로키랍토르", diet: "육식", img: "images/velociraptor.png",
+      name: "벨로키랍토르", diet: "육식", img: "images/velociraptor.webp",
       desc: "닭만큼 작고 깃털이 수북수북해요. 발에는 낫처럼 생긴 발톱이 있어요!"
     },
     {
-      name: "스피노사우루스", diet: "육식", img: "images/spinosaurus.png",
+      name: "스피노사우루스", diet: "육식", img: "images/spinosaurus.webp",
       desc: "등에 커다란 돛이 있어요. 악어처럼 긴 주둥이로 물고기를 잡아먹었어요!"
     },
     {
-      name: "수코미무스", diet: "육식", img: "images/suchomimus.png",
+      name: "수코미무스", diet: "육식", img: "images/suchomimus.webp",
       desc: "악어처럼 길쭉한 주둥이가 있어요. 물가에 서서 물고기를 냠냠 잡아먹었어요!"
     },
     {
-      name: "트리케라톱스", diet: "초식", img: "images/triceratops.png",
+      name: "트리케라톱스", diet: "초식", img: "images/triceratops.webp",
       desc: "얼굴에 뿔이 세 개, 목에는 커다란 방패가 있어요. 풀을 냠냠 먹었어요!"
     },
     {
-      name: "브라키오사우루스", diet: "초식", img: "images/brachiosaurus.png",
+      name: "브라키오사우루스", diet: "초식", img: "images/brachiosaurus.webp",
       desc: "목이 아주아주 길어서 높은 나무 잎을 먹었어요. 세상에서 제일 큰 공룡 중 하나예요!"
     },
     {
-      name: "스테고사우루스", diet: "초식", img: "images/stegosaurus.png",
+      name: "스테고사우루스", diet: "초식", img: "images/stegosaurus.webp",
       desc: "등에 커다란 판이 줄줄이 붙어 있어요. 꼬리에는 뾰족한 가시가 있어요!"
     }
   ];
@@ -439,6 +482,7 @@
     analyser: null,
     data: null,
     raf: 0,
+    micGen: 0,
     unlocked: false
   };
 
@@ -563,10 +607,17 @@
   /* ---------- 마이크 (보조) ---------- */
   function startMicMeter() {
     if (audio.micStream || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
+    var gen = audio.micGen + 1;
+    audio.micGen = gen;
     navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+      // 기다리는 사이에 이미 정리되었으면 바로 끈다
+      if (gen !== audio.micGen) {
+        try { stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) {}
+        return;
+      }
       audio.micStream = stream;
       var ctx = ensureCtx();
-      if (!ctx) return;
+      if (!ctx) { stopMicMeter(); return; }
       try {
         var src = ctx.createMediaStreamSource(stream);
         var an = ctx.createAnalyser();
@@ -591,6 +642,25 @@
     var lvl = 1 + Math.min(0.55, rms * 5);
     elRing.style.setProperty("--lvl", lvl.toFixed(3));
     audio.raf = requestAnimationFrame(meterLoop);
+  }
+
+  // 마이크 스트림과 미터기 정리 (표시등·배터리 계속 소모 방지)
+  function stopMicMeter() {
+    audio.micGen = audio.micGen + 1;
+    if (audio.raf) { cancelAnimationFrame(audio.raf); audio.raf = 0; }
+    if (audio.analyser) {
+      try { audio.analyser.disconnect(); } catch (e) {}
+      audio.analyser = null;
+    }
+    audio.data = null;
+    if (audio.micStream) {
+      try {
+        var tracks = audio.micStream.getTracks();
+        for (var i = 0; i < tracks.length; i++) { tracks[i].stop(); }
+      } catch (e) {}
+      audio.micStream = null;
+    }
+    elRing.style.setProperty("--lvl", "1");
   }
 
   var recognition = null;
@@ -619,6 +689,9 @@
     try { recognition.stop(); } catch (e) {}
     recognition = null;
   }
+
+  // 화면을 떠날 때 마이크를 확실히 닫는다
+  window.addEventListener("pagehide", function () { stopMicMeter(); stopRecognition(); });
 
   /* ---------- 화면 ---------- */
   function showScreen(key) {
@@ -741,6 +814,7 @@
     state.busy = false;
 
     stopRecognition();
+    stopMicMeter();
     elListening.classList.remove("on");
     elRing.style.setProperty("--lvl", "1");
 
@@ -902,7 +976,12 @@
   });
 
   document.addEventListener("visibilitychange", function () {
-    if (document.hidden) { stopSpeech(); stopRecognition(); }
+    if (document.hidden) {
+      stopSpeech();
+      stopRecognition();
+      stopMicMeter();
+      elListening.classList.remove("on");
+    }
   });
 
   // 첫 터치에서 오디오 잠금 해제 (아이폰 사파리 대비)
